@@ -7,7 +7,17 @@ import {
   ScrollView,
   Button,
   TouchableOpacity,
+  Dimensions,
 } from "react-native";
+
+import ButtonContainer from "../Components/ButtonContainer";
+let { width, height } = Dimensions.get("window");
+
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
+
 import LinearGradient from "react-native-linear-gradient";
 
 const ScreenThirteen = (props) => {
@@ -164,22 +174,7 @@ const ScreenThirteen = (props) => {
           </View>
         </View>
       </View>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate("screenEleven");
-          }}
-          style={styles.buttonStyle}
-        >
-          <Text>screen 11</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonStyle}>
-          <Text>screen 12</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonStyle}>
-          <Text>screen 13</Text>
-        </TouchableOpacity>
-      </View>
+      <ButtonContainer navigation={navigation} />
     </ScrollView>
   );
 };
@@ -304,8 +299,8 @@ const styles = StyleSheet.create({
     marginTop: 21,
   },
   languageContainer: {
-    width: 155,
-    height: 155,
+    width: wp(40),
+    height: wp(40),
 
     // elevation: 2,
     // shadowColor: "#52006A",
@@ -331,8 +326,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   languageContainerSecond: {
-    width: 155,
-    height: 155,
+    width: wp(40),
+    height: wp(40),
 
     // elevation: 2,
     // shadowColor: "#52006A",

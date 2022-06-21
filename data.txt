@@ -1,0 +1,6 @@
+  Keystore password: 0abc9f36a16240a086d4a582ce7f6bc1
+  Key alias:         QGFzaHdhbmkxMjM0L25ld2FwcA==
+  Key password:      f3ce3d402f4e4c1d943ddf7bbf164523
+
+  Path to Keystore:  /home/buzzybrains/Desktop/react native/newapp/newapp.jks
+      

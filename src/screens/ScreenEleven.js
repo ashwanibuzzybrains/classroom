@@ -6,9 +6,21 @@ import {
   ImageBackground,
   ScrollView,
   TouchableOpacity,
+  Dimensions,
 } from "react-native";
+import ButtonContainer from "../Components/ButtonContainer";
+
+let { width, height } = Dimensions.get("window");
+
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
+
 const ScreenEleven = (props) => {
   const { navigation } = props;
+
+  const { height, width } = Dimensions.get("window");
   return (
     <ScrollView style={styles.mainContainer}>
       <View style={styles.topContainer}>
@@ -218,32 +230,7 @@ const ScreenEleven = (props) => {
           source={require("../../assets/screenElevenPic/chevron_right.png")}
         />
       </View>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate("screenEleven");
-          }}
-          style={styles.buttonStyle}
-        >
-          <Text>screen 11</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate("screenTwelve");
-          }}
-          style={styles.buttonStyle}
-        >
-          <Text>screen 12</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate("screenThirteen");
-          }}
-          style={styles.buttonStyle}
-        >
-          <Text>screen 13</Text>
-        </TouchableOpacity>
-      </View>
+      <ButtonContainer navigation={navigation} />
     </ScrollView>
   );
 };
@@ -342,7 +329,7 @@ const styles = StyleSheet.create({
   },
   timeContainer: {
     height: 46,
-    width: 368,
+    width: width - 40,
     alignSelf: "center",
     backgroundColor: "white",
     position: "relative",
@@ -385,7 +372,19 @@ const styles = StyleSheet.create({
   classContainer: {
     borderWidth: 1,
     height: 107,
-    width: 151,
+    width: wp("42%"),
+    borderRadius: 8,
+    paddingLeft: 12,
+    flexDirection: "column",
+    justifyContent: "space-between",
+  },
+  classContainerSecond: {
+    marginLeft: "auto",
+    backgroundColor: "#FEF1FB",
+    borderWidth: 1,
+    borderColor: "#EED0E7",
+    height: 107,
+    width: wp("42%"),
     borderRadius: 8,
     paddingLeft: 12,
     flexDirection: "column",
@@ -428,19 +427,6 @@ const styles = StyleSheet.create({
   parentClassContainer: {
     flexDirection: "row",
     marginTop: 20,
-  },
-  classContainerSecond: {
-    marginLeft: "auto",
-    marginRight: 6,
-    backgroundColor: "#FEF1FB",
-    borderWidth: 1,
-    borderColor: "#EED0E7",
-    height: 107,
-    width: 151,
-    borderRadius: 8,
-    paddingLeft: 12,
-    flexDirection: "column",
-    justifyContent: "space-between",
   },
   bottomContainer: {
     height: 70,
