@@ -10,7 +10,6 @@ import {
   Dimensions,
 } from "react-native";
 
-import ButtonContainer from "../Components/ButtonContainer";
 let { width, height } = Dimensions.get("window");
 
 import {
@@ -174,7 +173,6 @@ const ScreenThirteen = (props) => {
           </View>
         </View>
       </View>
-      <ButtonContainer navigation={navigation} />
     </ScrollView>
   );
 };

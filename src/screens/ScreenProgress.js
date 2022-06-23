@@ -10,8 +10,24 @@ import {
   TextInput,
   StatusBar,
 } from "react-native";
+import {
+  LineChart,
+  BarChart,
+  PieChart,
+  ProgressChart,
+  ContributionGraph,
+  StackedBarChart,
+} from "react-native-chart-kit";
+import { PieChart as DonutChart } from "react-native-gifted-charts";
 
-import { SvgUri } from "react-native-svg";
+// import PieChart from "react-native-pie-chart";
+// import BarChart from "react-native-bar-chart";
+
+// import Pie from "react-native-pie";
+// import SvgUri from "react-native-svg-uri";
+
+// import SvgUri from "react-native-svg";
+
 let { width, height } = Dimensions.get("window");
 
 import {
@@ -20,12 +36,135 @@ import {
 } from "react-native-responsive-screen";
 
 const ScreenProgress = () => {
-  const widthAndHeight = 250;
-  const series = [123, 321, 123, 789, 537];
-  const sliceColor = ["#F44336", "#2196F3", "#FFEB3B", "#4CAF50", "#FF9800"];
+  {
+    /* <Image
+          style={styles.pieChart}
+          source={require("../../assets/screenProgressPic/PieChart.png")}
+        /> */
+  }
+  // const widthAndHeight = 250;
+  // const series = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140];
+  // const sliceColor = ["#F44336", "#2196F3", "#FFEB3B", "#4CAF50", "#FF9800"];
+  // const data = [
+  //   [70, -5],
+  //   [80, -10],
+  //   [110, 0],
+  //   [100, 0],
+  //   [280, -60],
+  // ];
+  // // labels
+  // const horizontalData = ["Batch1", "Batch2", "Batch3", "Batch4", "Batch5"];
+  const dataBar = {
+    labels: ["Batch1", "Batch2", "Batch3", "Batch4", "Batch5"],
+    datasets: [
+      {
+        data: [110, 80, 85, 95, 60],
+      },
+    ],
+  };
+
+  const screenWidthBar = width - 40;
+  const screenWidthPie = width - 40;
+  const chartConfigBar = {
+    backgroundGradientFrom: "#ffffff",
+    backgroundGradientFromOpacity: 0,
+    backgroundGradientTo: "#ffffff",
+    color: (opacity = 1) => `rgba(52, 213, 235, ${opacity})`,
+    strokeWidth: 2, // optional, default 3
+    barPercentage: 0.5,
+    useShadowColorFromDataset: false,
+  };
+  const chartConfigPie = {
+    backgroundGradientFrom: "#ffffff",
+    backgroundGradientFromOpacity: 0,
+    backgroundGradientTo: "#ffffff",
+    color: (opacity = 1) => `rgba(52, 213, 235, ${opacity})`,
+    strokeWidth: 2, // optional, default 3
+
+    useShadowColorFromDataset: false,
+  };
+  const dataDonutRefrence = [
+    { value: 30 },
+    { value: 25 },
+    { value: 20 },
+    { value: 15 },
+    { value: 10 },
+  ];
+  const dataDonut = [
+    {
+      value: 30,
+      text: `गणित ${dataDonutRefrence[0].value}%`,
+      color: "#1AA37A",
+      shiftTextY: wp(3),
+      shiftTextX: wp(-3),
+      key: 1,
+    },
+    {
+      value: 25,
+      text: `भूमिती ${dataDonutRefrence[1].value}%`,
+      color: "#C15CFF",
+      shiftTextX: wp(-3),
+      key: 2,
+    },
+    {
+      value: 20,
+      text: `भूगोल ${dataDonutRefrence[2].value}%`,
+      color: "#FFEAC0",
+      key: 3,
+    },
+    {
+      value: 15,
+      text: `इतिहास  ${dataDonutRefrence[3].value}%`,
+      color: "#39CEF3",
+      shiftTextY: wp(1),
+      shiftTextX: wp(-3),
+      key: 4,
+    },
+    {
+      value: 10,
+      text: `मराठी  ${dataDonutRefrence[4].value}%`,
+      color: "#FF4444",
+      shiftTextX: wp(-4),
+      key: 5,
+    },
+  ];
+  const dataPie = [
+    {
+      name: "इतिहास",
+      percent: 25,
+      color: "#9DFFB3",
+      legendFontColor: "#7F7F7F",
+      legendFontSize: 15,
+      key: 1,
+    },
+    {
+      name: "भूमिती",
+      percent: 10,
+      color: "#C15CFF",
+      legendFontColor: "#7F7F7F",
+      legendFontSize: 15,
+      key: 2,
+    },
+    {
+      name: "भूगोल",
+      percent: 35,
+      color: "#39CEF3",
+      legendFontColor: "#7F7F7F",
+      legendFontSize: 15,
+      key: 3,
+    },
+    {
+      name: "मराठी ",
+      percent: 30,
+      color: "#FFEAC0",
+      legendFontColor: "#7F7F7F",
+      legendFontSize: 15,
+      key: 4,
+    },
+  ];
 
   return (
-    <View style={styles.mainBgContainer}>
+    <ScrollView style={styles.mainBgContainer}>
       <View style={styles.topContainer}>
         <View>
           <View style={styles.topContainerArrow}>
@@ -59,14 +198,135 @@ const ScreenProgress = () => {
         </View>
       </View>
       <View style={styles.pieChartContainer}>
-        <Text>pieChart</Text>
-        {/* <PieChart
-          widthAndHeight={widthAndHeight}
-          series={series}
-          sliceColor={sliceColor}
-        /> */}
+        <PieChart
+          style={styles.pieChart}
+          data={dataPie}
+          width={screenWidthPie}
+          height={screenWidthPie - 120}
+          chartConfig={chartConfigPie}
+          accessor={"percent"}
+          backgroundColor={"transparent"}
+          paddingLeft={"15"}
+          absolute={false}
+        />
       </View>
-    </View>
+      <Text style={styles.subjectHeadingTime}>
+        अभ्यासाचा ऐकून वेळ: 0 मिनिटे 42 सेकंड्स
+      </Text>
+      <View style={styles.subjectMainContainer}>
+        <View style={styles.subjectSubContainer}>
+          <View
+            style={[styles.subjectContainer, styles.subjectContainerColorOne]}
+          >
+            <Text
+              style={[
+                styles.subjectContainerHeading,
+                styles.subjectContentColorOne,
+              ]}
+            >
+              गणित
+            </Text>
+            <Text
+              style={[
+                styles.subjectContainerContent,
+                styles.subjectContentColorOne,
+              ]}
+            >
+              आवडता विषय
+            </Text>
+          </View>
+          <View
+            style={[styles.subjectContainer, styles.subjectContainerColorTwo]}
+          >
+            <Text
+              style={[
+                styles.subjectContainerHeading,
+                styles.subjectContentColorTwo,
+              ]}
+            >
+              5248
+            </Text>
+            <Text
+              style={[
+                styles.subjectContainerContent,
+                styles.subjectContentColorTwo,
+              ]}
+            >
+              जिल्हास्तरीय रँक
+            </Text>
+          </View>
+        </View>
+        <View style={styles.subjectSubContainer}>
+          <View
+            style={[styles.subjectContainer, styles.subjectContainerColorThree]}
+          >
+            <Text
+              style={[
+                styles.subjectContainerHeading,
+                styles.subjectContentColorThree,
+              ]}
+            >
+              102
+            </Text>
+            <Text
+              style={[
+                styles.subjectContainerContent,
+                styles.subjectContentColorThree,
+              ]}
+            >
+              तालुकास्तरीय रँक
+            </Text>
+          </View>
+          <View
+            style={[styles.subjectContainer, styles.subjectContainerColorFour]}
+          >
+            <Text
+              style={[
+                styles.subjectContainerHeading,
+                styles.subjectContentColorFour,
+              ]}
+            >
+              13
+            </Text>
+            <Text
+              style={[
+                styles.subjectContainerContent,
+                styles.subjectContentColorFour,
+              ]}
+            >
+              शाळास्तरीय रँक{" "}
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View style={styles.barChartContainer}>
+        <Text style={styles.barChartHeading}>अभ्यासातील सातत्य</Text>
+        <BarChart
+          style={styles.barChart}
+          data={dataBar}
+          width={screenWidthBar}
+          height={220}
+          yAxisLabel=""
+          fromZero={true}
+          chartConfig={chartConfigBar}
+          verticalLabelRotation={0}
+        />
+      </View>
+      <View style={styles.donutChartContainer}>
+        <DonutChart
+          style={styles.donutChart}
+          labelsPosition="outward"
+          showValuesAsLabels
+          showText
+          data={dataDonut}
+          donut
+          textColor="black"
+          focusOnPress={true}
+          textSize={10}
+        />
+        <View></View>
+      </View>
+    </ScrollView>
   );
 };
 const styles = StyleSheet.create({
@@ -163,6 +423,91 @@ const styles = StyleSheet.create({
   topBottomContainerRight: { color: "white", fontSize: 16, fontWeight: "500" },
   pieChartContainer: {
     flexDirection: "column",
+    alignItems: "center",
+    marginVertical: 30,
+    backgroundColor: "white",
+    alignItems: "center",
+  },
+  pieChart: {
+    marginBottom: 30,
+  },
+  subjectHeadingTime: {
+    fontSize: 16,
+    fontWeight: "500",
+    textAlign: "center",
+  },
+  subjectContainer: {
+    width: wp(40),
+    // borderWidth: 1,
+    borderRadius: 10,
+    height: wp(30),
+    margin: wp(4),
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  subjectSubContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  subjectMainContainer: {
+    marginTop: 20,
+  },
+  subjectContainerHeading: {
+    fontSize: 40,
+    fontWeight: "800",
+  },
+  subjectContainerContent: {
+    fontSize: 18,
+    fontWeight: "600",
+  },
+  subjectContentColorOne: {
+    color: "#984986",
+  },
+  subjectContentColorTwo: {
+    color: "#4B4998",
+  },
+  subjectContentColorThree: {
+    color: "#3B8A02",
+  },
+  subjectContentColorFour: {
+    color: "#D66E53",
+  },
+  subjectContainerColorOne: {
+    backgroundColor: "#FEF1FB",
+    borderWidth: 1,
+    borderColor: "#EED0E7",
+  },
+  subjectContainerColorTwo: {
+    backgroundColor: "#EEF7FE",
+    borderWidth: 1,
+    borderColor: "#D3E3EF",
+  },
+  subjectContainerColorThree: {
+    backgroundColor: "#F0FFF9",
+    borderWidth: 1,
+    borderColor: "#C1E3D6",
+  },
+
+  subjectContainerColorFour: {
+    backgroundColor: "#FFFBEC",
+    borderWidth: 1,
+    borderColor: "#FFE8C6",
+  },
+  barChartHeading: {
+    fontSize: 16,
+    marginLeft: 20,
+    fontWeight: "500",
+  },
+  barChart: { marginLeft: 20, marginVertical: 30 },
+  donutChartContainer: {
+    backgroundColor: "white",
+    marginBottom: 20,
+    width: width - 40,
+    padding: 20,
+    marginLeft: 20,
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 export default ScreenProgress;

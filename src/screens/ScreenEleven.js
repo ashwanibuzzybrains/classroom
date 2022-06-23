@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
   Dimensions,
 } from "react-native";
-import ButtonContainer from "../Components/ButtonContainer";
 
 let { width, height } = Dimensions.get("window");
 
@@ -230,7 +229,6 @@ const ScreenEleven = (props) => {
           source={require("../../assets/screenElevenPic/chevron_right.png")}
         />
       </View>
-      <ButtonContainer navigation={navigation} />
     </ScrollView>
   );
 };

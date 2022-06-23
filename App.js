@@ -8,13 +8,20 @@ import ScreenThirteen from "./src/screens/ScreenThirteen";
 import Responsive from "./src/screens/Responsive";
 import ScreenLogin from "./src/screens/ScreenLogin";
 import ScreenProgress from "./src/screens/ScreenProgress";
+import HomePage from "./src/screens/Homepage";
+import Question from "./src/screens/Question";
 
 const Stack = createNativeStackNavigator();
 
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="screenprogress">
+      <Stack.Navigator initialRouteName="question">
+        <Stack.Screen
+          name="homepage"
+          options={{ headerShown: false }}
+          component={HomePage}
+        />
         <Stack.Screen
           name="responsive"
           options={{ headerShown: false }}
@@ -37,13 +44,18 @@ function App() {
         />
         <Stack.Screen
           options={{ headerShown: false }}
-          name="screenlogin"
+          name="screenLogin"
           component={ScreenLogin}
         />
         <Stack.Screen
           options={{ headerShown: false }}
-          name="screenprogress"
+          name="screenProgress"
           component={ScreenProgress}
+        />
+        <Stack.Screen
+          name="question"
+          options={{ headerShown: false }}
+          component={Question}
         />
       </Stack.Navigator>
     </NavigationContainer>

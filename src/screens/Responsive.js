@@ -1,5 +1,4 @@
 import { Dimensions, PixelRatio, Text, StyleSheet, View } from "react-native";
-import ButtonContainer from "../Components/ButtonContainer";
 
 import {
   widthPercentageToDP as wp,
@@ -25,7 +24,6 @@ const Responsive = (props) => {
   return (
     <View style={styles.bg}>
       <Text style={styles.text}>Responive</Text>
-      <ButtonContainer navigation={navigation} />
     </View>
   );
 };
